@@ -1,15 +1,8 @@
 from pony.orm import db_session
-from models import Poll
-from enum import Enum, auto
+from models import Poll, Period
 
 
-class Period(Enum):
-    DAILY=auto()
-    WEEKLY=auto()
-    MONTHLY=auto()
-
-def create_poll_with_name(message_text):
-    poll_name=(message_text).split(" ", 1)[1]
+def create_poll_with_name(poll_name) -> None:
     with db_session:
-        poll=Poll(text=poll_name,periodic_votes=2,period=Period.WEEKLY.name)
-    return poll_name
+        Poll(text=poll_name, periodic_votes=2, period=Period.WEEKLY.name)
+    return

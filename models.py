@@ -2,9 +2,16 @@
 # -*- coding: utf-8 -*-
 
 from pony.orm import *
+from enum import Enum, auto
 import datetime
 
 db = Database()
+
+
+class Period(Enum):
+    DAILY = auto()
+    WEEKLY = auto()
+    MONTHLY = auto()
 
 
 class Poll(db.Entity):
@@ -16,6 +23,7 @@ class Poll(db.Entity):
     results = Optional("Results")
     options = Set("Option")
 
+
 class Option(db.Entity):
     text = Required(str)
     url = Required(str)
@@ -23,7 +31,9 @@ class Option(db.Entity):
     vote_a = Optional("Vote", reverse="option_a")
     vote_b = Optional("Vote", reverse="option_b")
     results = Optional("Results")
+    approved = Required(bool, default=False)
     poll = Required("Poll")
+
 
 class Vote(db.Entity):
     created_at = Required(datetime.datetime, default=datetime.datetime.utcnow)

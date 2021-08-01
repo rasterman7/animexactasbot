@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
-from telegram import (ChatAction, InlineKeyboardButton, InlineKeyboardMarkup,
-                      ReplyKeyboardMarkup, Update, constants)
+from telegram import (InlineKeyboardButton, InlineKeyboardMarkup, Update)
 from telegram.ext import CallbackContext
+
 
 def dame_botones(update: Update, context: CallbackContext):
     botones = [[
@@ -17,4 +17,3 @@ def dame_botones(update: Update, context: CallbackContext):
         "Hola, tomá estos botones :D",
         reply_markup=reply_markup
     )
-    
